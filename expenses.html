@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expenses/Fuel - Transit Ops</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        Transit Ops
+      </div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="vehicles.html">Vehicles</a></li>
+        <li><a href="drivers.html">Drivers</a></li>
+        <li><a href="trips.html">Trips</a></li>
+        <li><a href="maintenance.html">Maintenance</a></li>
+        <li><a href="expenses.html" class="active">Expenses/Fuel</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="topbar">
+        <h2>Expenses & Fuel Log</h2>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-secondary" style="margin-right: 15px;">Toggle Dark Mode</button>
+        </div>
+      </div>
+
+      <div class="table-container" style="padding: 20px;">
+        <h3 class="mb-3">Log Fuel/Expense</h3>
+        <form id="expenseForm" style="max-width: 500px;">
+          <div class="form-group">
+            <label>Trip / Vehicle</label>
+            <select id="expense-trip-select" class="form-control" required>
+              <option value="">Select Trip or Vehicle</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Expense Type</label>
+            <select class="form-control" required>
+              <option value="fuel">Fuel</option>
+              <option value="toll">Toll</option>
+              <option value="food">Food</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Amount</label>
+            <input type="number" class="form-control" placeholder="0.00" required>
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Expense</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/mock-data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tripSelect = document.getElementById('expense-trip-select');
+      mockData.trips.forEach(t => {
+        const option = document.createElement('option');
+        option.value = t.id;
+        option.textContent = `Trip: ${t.id} (${t.source} - ${t.destination})`;
+        tripSelect.appendChild(option);
+      });
+
+      document.getElementById('expenseForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Expense logged (Mock)');
+        this.reset();
+      });
+    });
+  </script>
+</body>
+</html>

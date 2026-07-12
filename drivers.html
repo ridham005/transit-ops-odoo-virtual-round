@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drivers - Transit Ops</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        Transit Ops
+      </div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="vehicles.html">Vehicles</a></li>
+        <li><a href="drivers.html" class="active">Drivers</a></li>
+        <li><a href="trips.html">Trips</a></li>
+        <li><a href="maintenance.html">Maintenance</a></li>
+        <li><a href="expenses.html">Expenses/Fuel</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="topbar">
+        <h2>Driver Management</h2>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-secondary" style="margin-right: 15px;">Toggle Dark Mode</button>
+          <button class="btn btn-primary">Add Driver</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>License Type</th>
+              <th>Phone</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="driver-table-body">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/mock-data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tbody = document.getElementById('driver-table-body');
+      
+      mockData.drivers.forEach(driver => {
+        const tr = document.createElement('tr');
+        const badgeClass = getStatusBadgeClass(driver.status);
+        
+        tr.innerHTML = `
+          <td>${driver.id}</td>
+          <td>${driver.name}</td>
+          <td>${driver.licenseType}</td>
+          <td>${driver.phone}</td>
+          <td><span class="badge ${badgeClass}">${driver.status}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transit Ops - Login</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="login-body">
+  <div class="login-card">
+    <h2 class="mb-3" style="text-align: center;">Transit Ops</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <select id="role" class="form-control" required>
+          <option value="">Select Role</option>
+          <option value="Fleet Manager">Fleet Manager</option>
+          <option value="Dispatcher">Dispatcher</option>
+          <option value="Safety Officer">Safety Officer</option>
+          <option value="Financial Analyst">Financial Analyst</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const role = document.getElementById('role').value;
+      if (role) {
+        sessionStorage.setItem('userRole', role);
+        window.location.href = 'dashboard.html';
+      }
+    });
+  </script>
+</body>
+</html>

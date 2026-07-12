@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Transit Ops</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        Transit Ops
+      </div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="vehicles.html">Vehicles</a></li>
+        <li><a href="drivers.html">Drivers</a></li>
+        <li><a href="trips.html">Trips</a></li>
+        <li><a href="maintenance.html">Maintenance</a></li>
+        <li><a href="expenses.html">Expenses/Fuel</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="topbar">
+        <h2>Dashboard</h2>
+        <div class="d-flex align-items-center">
+          <span id="role-display" style="margin-right: 15px; font-weight: 500;"></span>
+          <button id="theme-toggle" class="btn btn-secondary" style="margin-right: 15px;">Toggle Dark Mode</button>
+          <a href="index.html" class="btn btn-secondary">Logout</a>
+        </div>
+      </div>
+
+      <!-- Filters placeholder -->
+      <div class="mb-3 d-flex" style="gap: 15px;">
+        <select class="form-control" style="width: auto;">
+          <option>All Vehicle Types</option>
+          <option>Heavy Truck</option>
+          <option>Van</option>
+        </select>
+        <select class="form-control" style="width: auto;">
+          <option>All Statuses</option>
+          <option>Available</option>
+          <option>On Trip</option>
+        </select>
+        <select class="form-control" style="width: auto;">
+          <option>All Regions</option>
+          <option>North</option>
+          <option>South</option>
+        </select>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Active Vehicles</div>
+          <div class="kpi-value" id="kpi-active-vehicles">0</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Available Vehicles</div>
+          <div class="kpi-value" id="kpi-available-vehicles">0</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">In-Shop Vehicles</div>
+          <div class="kpi-value" id="kpi-inshop-vehicles">0</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Active Trips</div>
+          <div class="kpi-value" id="kpi-active-trips">0</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Pending Trips</div>
+          <div class="kpi-value" id="kpi-pending-trips">0</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Drivers On Duty</div>
+          <div class="kpi-value" id="kpi-drivers-duty">0</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Fleet Utilization</div>
+          <div class="kpi-value" id="kpi-utilization">0%</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/mock-data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Display role
+      const role = sessionStorage.getItem('userRole') || 'Guest';
+      document.getElementById('role-display').textContent = `Role: ${role}`;
+
+      // Populate KPIs from mock data
+      document.getElementById('kpi-active-vehicles').textContent = mockData.kpis.activeVehicles;
+      document.getElementById('kpi-available-vehicles').textContent = mockData.kpis.availableVehicles;
+      document.getElementById('kpi-inshop-vehicles').textContent = mockData.kpis.inShopVehicles;
+      document.getElementById('kpi-active-trips').textContent = mockData.kpis.activeTrips;
+      document.getElementById('kpi-pending-trips').textContent = mockData.kpis.pendingTrips;
+      document.getElementById('kpi-drivers-duty').textContent = mockData.kpis.driversOnDuty;
+      document.getElementById('kpi-utilization').textContent = mockData.kpis.fleetUtilization;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trips - Transit Ops</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        Transit Ops
+      </div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="vehicles.html">Vehicles</a></li>
+        <li><a href="drivers.html">Drivers</a></li>
+        <li><a href="trips.html" class="active">Trips</a></li>
+        <li><a href="maintenance.html">Maintenance</a></li>
+        <li><a href="expenses.html">Expenses/Fuel</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="topbar">
+        <h2>Trip Management</h2>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-secondary" style="margin-right: 15px;">Toggle Dark Mode</button>
+          <button class="btn btn-primary" id="create-trip-btn">Create Trip</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Trip ID</th>
+              <th>Source</th>
+              <th>Destination</th>
+              <th>Vehicle</th>
+              <th>Driver</th>
+              <th>Weight</th>
+              <th>Distance</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="trip-table-body">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Create Trip Modal -->
+  <div id="tripModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeTripModal">&times;</span>
+      <h3 class="mb-3">Create New Trip</h3>
+      <form id="createTripForm">
+        <div class="form-group">
+          <label>Source</label>
+          <input type="text" class="form-control" required placeholder="Enter source location">
+        </div>
+        <div class="form-group">
+          <label>Destination</label>
+          <input type="text" class="form-control" required placeholder="Enter destination">
+        </div>
+        <div class="form-group">
+          <label>Vehicle</label>
+          <select id="trip-vehicle-select" class="form-control" required>
+            <option value="">Select Vehicle</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Driver</label>
+          <select id="trip-driver-select" class="form-control" required>
+            <option value="">Select Driver</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Cargo Weight</label>
+          <input type="text" class="form-control" required placeholder="e.g., 20t">
+        </div>
+        <div class="form-group">
+          <label>Planned Distance</label>
+          <input type="text" class="form-control" required placeholder="e.g., 150 km">
+        </div>
+        <button type="submit" class="btn btn-primary">Save as Draft</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/mock-data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tbody = document.getElementById('trip-table-body');
+      
+      // Populate trips table
+      mockData.trips.forEach(trip => {
+        const tr = document.createElement('tr');
+        const badgeClass = getStatusBadgeClass(trip.status);
+        
+        tr.innerHTML = `
+          <td>${trip.id}</td>
+          <td>${trip.source}</td>
+          <td>${trip.destination}</td>
+          <td>${trip.vehicle}</td>
+          <td>${trip.driver}</td>
+          <td>${trip.weight}</td>
+          <td>${trip.distance}</td>
+          <td><span class="badge ${badgeClass}">${trip.status}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Populate modal dropdowns
+      const vehicleSelect = document.getElementById('trip-vehicle-select');
+      mockData.vehicles.filter(v => v.status === 'Available').forEach(v => {
+        const option = document.createElement('option');
+        option.value = v.id;
+        option.textContent = `${v.id} - ${v.regNumber} (${v.type})`;
+        vehicleSelect.appendChild(option);
+      });
+
+      const driverSelect = document.getElementById('trip-driver-select');
+      mockData.drivers.filter(d => d.status === 'Available').forEach(d => {
+        const option = document.createElement('option');
+        option.value = d.id;
+        option.textContent = `${d.name} (${d.licenseType})`;
+        driverSelect.appendChild(option);
+      });
+
+      // Modal logic
+      const modal = document.getElementById('tripModal');
+      const createBtn = document.getElementById('create-trip-btn');
+      const closeBtn = document.getElementById('closeTripModal');
+
+      createBtn.onclick = function() { modal.classList.add('show'); }
+      closeBtn.onclick = function() { modal.classList.remove('show'); }
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.classList.remove('show');
+        }
+      }
+
+      document.getElementById('createTripForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Trip saved as Draft (Mock functionality)');
+        modal.classList.remove('show');
+      });
+    });
+  </script>
+</body>
+</html>
