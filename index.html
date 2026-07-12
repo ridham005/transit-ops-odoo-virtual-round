@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - TransitOps</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .login-page {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--bg-primary);
+        }
+        
+        .login-left {
+            flex: 1;
+            background-color: #cfd8dc; /* Light gray from mockup for contrast */
+            color: var(--bg-primary);
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-card h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .login-card p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--bg-tertiary);
+            border-radius: var(--border-radius-sm);
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: border-color var(--transition-speed);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 1rem;
+            border-radius: var(--border-radius-sm);
+        }
+        
+        .role-features {
+            margin-top: 2rem;
+        }
+        .role-features li {
+            margin-bottom: 0.5rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .role-features li::before {
+            content: "•";
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-left">
+            <h1 style="font-size: 2.5rem; font-weight: 600; margin-bottom: 0.5rem;">TransitOps</h1>
+            <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 3rem;">Smart Transport Operations Platform</p>
+            
+            <div class="role-features">
+                <h3 style="margin-bottom: 1rem;">One login, four roles:</h3>
+                <ul>
+                    <li>Fleet Manager</li>
+                    <li>Dispatcher</li>
+                    <li>Safety Officer</li>
+                    <li>Financial Analyst</li>
+                </ul>
+            </div>
+            
+            <div style="margin-top: auto; font-size: 0.8rem; opacity: 0.6;">
+                TRANSITOPS © 2026 • RBAC ENABLED
+            </div>
+        </div>
+        
+        <div class="login-right">
+            <div class="login-card">
+                <h2>Sign in to your account</h2>
+                <p>Enter your credentials to continue</p>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="raven.k@transitops.in" required value="raven.k@transitops.in">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="••••••••" required value="password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="role">Role (RBAC)</label>
+                        <select id="role" class="form-control" required>
+                            <option value="Fleet Manager">Fleet Manager</option>
+                            <option value="Dispatcher" selected>Dispatcher</option>
+                            <option value="Safety Officer">Safety Officer</option>
+                            <option value="Financial Analyst">Financial Analyst</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; font-size: 0.9rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" checked> Remember me
+                        </label>
+                        <a href="#" style="color: var(--status-info);">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary login-btn">Sign In</button>
+                </form>
+                
+                <div style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-secondary);">
+                    <p style="margin-bottom: 0.5rem;">Access is scoped by role after login:</p>
+                    <ul style="list-style-type: none; padding-left: 0.5rem;">
+                        <li>• Fleet Manager → Fleet, Maintenance</li>
+                        <li>• Dispatcher → Dashboard, Trips</li>
+                        <li>• Safety Officer → Drivers, Compliance</li>
+                        <li>• Financial Analyst → Fuel & Expenses, Analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const role = document.getElementById('role').value;
+            sessionStorage.setItem('transitOpsRole', role);
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TransitOps</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Using a basic font-awesome alternative or SVG placeholders for icons, we will just use Unicode for simplicity in the basic structure -->
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span>Transit</span>Ops
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <span class="nav-icon">📊</span>
+                    Dashboard
+                </a>
+                <a href="vehicles.html" class="nav-item">
+                    <span class="nav-icon">🚚</span>
+                    Fleet
+                </a>
+                <a href="drivers.html" class="nav-item">
+                    <span class="nav-icon">🧑‍✈️</span>
+                    Drivers
+                </a>
+                <a href="trips.html" class="nav-item">
+                    <span class="nav-icon">🗺️</span>
+                    Trips
+                </a>
+                <a href="maintenance.html" class="nav-item">
+                    <span class="nav-icon">🔧</span>
+                    Maintenance
+                </a>
+                <a href="fuel.html" class="nav-item">
+                    <span class="nav-icon">⛽</span>
+                    Fuel & Expenses
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    Analytics
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar -->
+            <header class="topbar">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="topbar-right">
+                    <div class="user-profile">
+                        <span class="user-name">Raven K.</span>
+                        <div class="avatar">RK</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="content-area">
+                <h2>Dashboard</h2>
+                
+                <div style="padding: 2rem; border: 1px dashed var(--bg-tertiary); border-radius: var(--border-radius-md); text-align: center; color: var(--text-secondary);">
+                    Basic layout scaffold complete.<br>
+                    Specific widgets and mock-data rendering will be added here in the next steps.
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/mock-data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
