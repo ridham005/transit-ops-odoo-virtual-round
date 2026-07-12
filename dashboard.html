@@ -1,111 +1,327 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Transit Ops</title>
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Use a modern, consistent SVG icon set via inline SVGs to avoid dependencies -->
 </head>
 <body>
   <div class="app-container">
+    
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        Transit Ops
+        <div class="d-flex items-center gap-2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <span class="brand-text">Transit Ops</span>
+        </div>
+        <button class="collapse-btn" id="sidebar-collapse-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
       </div>
+      
       <ul class="nav-links">
-        <li><a href="dashboard.html" class="active">Dashboard</a></li>
-        <li><a href="vehicles.html">Vehicles</a></li>
-        <li><a href="drivers.html">Drivers</a></li>
-        <li><a href="trips.html">Trips</a></li>
-        <li><a href="maintenance.html">Maintenance</a></li>
-        <li><a href="expenses.html">Expenses/Fuel</a></li>
-        <li><a href="analytics.html">Analytics</a></li>
-        <li><a href="settings.html">Settings</a></li>
+        <li>
+          <a href="dashboard.html" class="active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="vehicles.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="12" width="18" height="8" rx="2" ry="2"></rect><path d="M4 12V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"></path><path d="M7 16h1"></path><path d="M16 16h1"></path></svg>
+            <span>Vehicles</span>
+          </a>
+        </li>
+        <li>
+          <a href="drivers.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Drivers</span>
+          </a>
+        </li>
+        <li>
+          <a href="trips.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <span>Trips</span>
+          </a>
+        </li>
+        <li>
+          <a href="maintenance.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+            <span>Maintenance</span>
+          </a>
+        </li>
+        <li>
+          <a href="expenses.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg>
+            <span>Fuel & Expenses</span>
+          </a>
+        </li>
+        <li>
+          <a href="analytics.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            <span>Analytics</span>
+          </a>
+        </li>
+        <li>
+          <a href="settings.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Settings</span>
+          </a>
+        </li>
       </ul>
+      
+      <div class="sidebar-footer">
+        <div class="user-avatar">RS</div>
+        <div class="user-info">
+          <div class="user-name">Rahul Sharma</div>
+          <div class="user-role" id="role-display">System Admin</div>
+        </div>
+      </div>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-      <div class="topbar">
-        <h2>Dashboard</h2>
-        <div class="d-flex align-items-center">
-          <span id="role-display" style="margin-right: 15px; font-weight: 500;"></span>
-          <button id="theme-toggle" class="btn btn-secondary" style="margin-right: 15px;">Toggle Dark Mode</button>
-          <a href="index.html" class="btn btn-secondary">Logout</a>
+      
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="page-title">Dashboard</h1>
         </div>
-      </div>
+        
+        <div class="topbar-right">
+          <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="global-search" placeholder="Search...">
+            <span class="search-shortcut">Ctrl+K</span>
+          </div>
+          
+          <div class="notification-wrapper" style="position: relative; margin-right: 8px;">
+            <button id="notif-toggle" class="saas-btn saas-btn-icon saas-btn-secondary">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              <span class="notif-badge" style="display:none; position: absolute; top: -2px; right: -2px; width: 10px; height: 10px; background: red; border-radius: 50%;"></span>
+            </button>
+            <div id="notif-dropdown" class="card" style="display: none; position: absolute; top: 100%; right: 0; width: 300px; max-height: 400px; overflow-y: auto; z-index: 1000; margin-top: 8px; padding: 0;">
+              <div style="padding: 12px 16px; border-bottom: 1px solid var(--border-color); font-weight: 500;">Notifications</div>
+              <div id="notif-list" style="padding: 8px 0;"></div>
+            </div>
+          </div>
+          <button id="theme-toggle" class="saas-btn saas-btn-icon saas-btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line></svg>
+          </button>
+          
+          <a href="index.html" class="saas-btn saas-btn-secondary" style="text-decoration: none;">Log out</a>
+        </div>
+      </header>
 
-      <!-- Filters placeholder -->
-      <div class="mb-3 d-flex" style="gap: 15px;">
-        <select class="form-control" style="width: auto;">
-          <option>All Vehicle Types</option>
-          <option>Heavy Truck</option>
-          <option>Van</option>
-        </select>
-        <select class="form-control" style="width: auto;">
-          <option>All Statuses</option>
-          <option>Available</option>
-          <option>On Trip</option>
-        </select>
-        <select class="form-control" style="width: auto;">
-          <option>All Regions</option>
-          <option>North</option>
-          <option>South</option>
-        </select>
-      </div>
+      <!-- Content Canvas -->
+      <div class="content-canvas">
+        <div class="content-max">
+          
+          <div class="d-flex justify-between items-center mb-6">
+            <div>
+              <h2 class="card-title mb-2">Welcome back, Rahul! ðŸ‘‹</h2>
+              <p class="text-muted">Here is what's happening with your fleet today.</p>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="saas-btn saas-btn-secondary">Export Report</button>
+              <button id="create-trip-btn" class="saas-btn saas-btn-primary">+ New Trip</button>
+            </div>
+          </div>
 
-      <!-- KPIs -->
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-title">Active Vehicles</div>
-          <div class="kpi-value" id="kpi-active-vehicles">0</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-title">Available Vehicles</div>
-          <div class="kpi-value" id="kpi-available-vehicles">0</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-title">In-Shop Vehicles</div>
-          <div class="kpi-value" id="kpi-inshop-vehicles">0</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-title">Active Trips</div>
-          <div class="kpi-value" id="kpi-active-trips">0</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-title">Pending Trips</div>
-          <div class="kpi-value" id="kpi-pending-trips">0</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-title">Drivers On Duty</div>
-          <div class="kpi-value" id="kpi-drivers-duty">0</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-title">Fleet Utilization</div>
-          <div class="kpi-value" id="kpi-utilization">0%</div>
+          <!-- KPIs -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-title">Active Vehicles</div>
+              <div class="kpi-value">
+                <span id="kpi-active-vehicles">0</span>
+                <span class="kpi-trend up">â†‘ 4%</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Available Vehicles</div>
+              <div class="kpi-value">
+                <span id="kpi-available-vehicles">0</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">In-Shop Vehicles</div>
+              <div class="kpi-value">
+                <span id="kpi-inshop-vehicles">0</span>
+                <span class="kpi-trend down">â†“ 1%</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Fleet Utilization</div>
+              <div class="kpi-value">
+                <span id="kpi-utilization">0%</span>
+                <span class="kpi-trend up">â†‘ 2%</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px;">
+            <!-- Active Trips -->
+            <div class="table-card">
+              <div class="card-header" style="padding: 24px 24px 0;">
+                <h3 class="card-title">Active Trips</h3>
+                <a href="trips.html" class="saas-btn saas-btn-secondary" style="font-size: 0.8rem; padding: 6px 12px;">View All</a>
+              </div>
+              <div class="table-responsive">
+                <table class="saas-table" style="margin-top: 16px;">
+                  <thead>
+                    <tr>
+                      <th>Trip ID</th>
+                      <th>Driver</th>
+                      <th>Destination</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#TRP-4921</td>
+                      <td>Priya Patel</td>
+                      <td>Mumbai Port Trust</td>
+                      <td><span class="badge badge-success">In Transit</span></td>
+                    </tr>
+                    <tr>
+                      <td>#TRP-4922</td>
+                      <td>Sanjay Singh</td>
+                      <td>Pune Warehouse</td>
+                      <td><span class="badge badge-success">In Transit</span></td>
+                    </tr>
+                    <tr>
+                      <td>#TRP-4923</td>
+                      <td>Amit Sharma</td>
+                      <td>Delhi Distribution Hub</td>
+                      <td><span class="badge badge-warning">Delayed</span></td>
+                    </tr>
+                    <tr>
+                      <td>#TRP-4924</td>
+                      <td>Neha Joshi</td>
+                      <td>Bengaluru Factory</td>
+                      <td><span class="badge badge-info">Loading</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Recent Activity Timeline -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Recent Activity</h3>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="d-flex gap-4">
+                  <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--success-color); margin-top: 6px;"></div>
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.9rem;">Vehicle #402 returned</div>
+                    <div class="text-muted">Just now â€¢ Pune Warehouse</div>
+                  </div>
+                </div>
+                <div class="d-flex gap-4">
+                  <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--warning-color); margin-top: 6px;"></div>
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.9rem;">Maintenance required</div>
+                    <div class="text-muted">2 hours ago â€¢ Vehicle #109 (Engine light)</div>
+                  </div>
+                </div>
+                <div class="d-flex gap-4">
+                  <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--info-color); margin-top: 6px;"></div>
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.9rem;">New trip scheduled</div>
+                    <div class="text-muted">4 hours ago â€¢ TRP-4925 (BOM to PNQ)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </main>
   </div>
 
-  <script src="js/mock-data.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Display role
-      const role = sessionStorage.getItem('userRole') || 'Guest';
-      document.getElementById('role-display').textContent = `Role: ${role}`;
+  <!-- Dynamic Trip Drawer (Dashboard Quick Action) -->
+  <div id="tripModal" class="drawer-backdrop">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <h2 id="drawerTitle">Create New Trip</h2>
+        <button class="saas-btn saas-btn-icon saas-btn-secondary" id="closeTripModal" style="border: none; background: transparent; box-shadow: none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="drawer-body">
+        <form id="tripForm">
+          <input type="hidden" id="trp-id">
+          <div class="form-group mb-4">
+            <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Source *</label>
+            <input type="text" id="trp-source" class="saas-input" style="width: 100%;" placeholder="Enter source location">
+            <span class="error-msg text-danger" style="display:none; font-size: 0.75rem; color: #dc3545; margin-top: 4px;">Required</span>
+          </div>
+          <div class="form-group mb-4">
+            <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Destination *</label>
+            <input type="text" id="trp-dest" class="saas-input" style="width: 100%;" placeholder="Enter destination">
+            <span class="error-msg text-danger" style="display:none; font-size: 0.75rem; color: #dc3545; margin-top: 4px;">Required</span>
+          </div>
+          
+          <div class="d-flex gap-4 mb-4">
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Vehicle *</label>
+              <select id="trp-vehicle" class="saas-input" style="width: 100%;">
+                <option value="">Select Vehicle</option>
+              </select>
+              <span class="error-msg text-danger" style="display:none; font-size: 0.75rem; color: #dc3545; margin-top: 4px;">Required</span>
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Driver *</label>
+              <select id="trp-driver" class="saas-input" style="width: 100%;">
+                <option value="">Select Driver</option>
+              </select>
+              <span class="error-msg text-danger" style="display:none; font-size: 0.75rem; color: #dc3545; margin-top: 4px;">Required</span>
+            </div>
+          </div>
+          
+          <div class="d-flex gap-4 mb-4">
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Weight</label>
+              <input type="text" id="trp-weight" class="saas-input" style="width: 100%;" placeholder="e.g., 20t">
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Distance</label>
+              <input type="text" id="trp-distance" class="saas-input" style="width: 100%;" placeholder="e.g., 150 km">
+            </div>
+          </div>
+          <div class="form-group mb-4" id="status-group" style="display:none;">
+            <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Status</label>
+            <select id="trp-status" class="saas-input" style="width: 100%;">
+              <option value="Draft">Draft</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="drawer-footer">
+        <button type="button" id="submitBtn" class="saas-btn saas-btn-primary" style="width: 100%; justify-content: center;">Save Trip</button>
+      </div>
+    </div>
+  </div>
 
-      // Populate KPIs from mock data
-      document.getElementById('kpi-active-vehicles').textContent = mockData.kpis.activeVehicles;
-      document.getElementById('kpi-available-vehicles').textContent = mockData.kpis.availableVehicles;
-      document.getElementById('kpi-inshop-vehicles').textContent = mockData.kpis.inShopVehicles;
-      document.getElementById('kpi-active-trips').textContent = mockData.kpis.activeTrips;
-      document.getElementById('kpi-pending-trips').textContent = mockData.kpis.pendingTrips;
-      document.getElementById('kpi-drivers-duty').textContent = mockData.kpis.driversOnDuty;
-      document.getElementById('kpi-utilization').textContent = mockData.kpis.fleetUtilization;
-    });
-  </script>
+  <script src="js/mock-data.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/rbac.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
 </body>
 </html>
+
+
+
+

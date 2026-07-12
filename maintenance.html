@@ -1,88 +1,322 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maintenance - Transit Ops</title>
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .alert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .alert-card {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    .alert-card.critical {
+      border-left: 4px solid var(--danger-color);
+    }
+    .alert-card.warning {
+      border-left: 4px solid var(--warning-color);
+    }
+    .alert-card.upcoming {
+      border-left: 4px solid var(--primary-color);
+    }
+    .alert-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .alert-card.critical .alert-icon {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--danger-color);
+    }
+    .alert-card.warning .alert-icon {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--warning-color);
+    }
+    .alert-card.upcoming .alert-icon {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary-color);
+    }
+    .alert-content h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: var(--text-primary);
+    }
+    .alert-content p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+  </style>
 </head>
 <body>
   <div class="app-container">
+    
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        Transit Ops
+        <div class="d-flex items-center gap-2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <span class="brand-text">Transit Ops</span>
+        </div>
+        <button class="collapse-btn" id="sidebar-collapse-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
       </div>
+      
       <ul class="nav-links">
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="vehicles.html">Vehicles</a></li>
-        <li><a href="drivers.html">Drivers</a></li>
-        <li><a href="trips.html">Trips</a></li>
-        <li><a href="maintenance.html" class="active">Maintenance</a></li>
-        <li><a href="expenses.html">Expenses/Fuel</a></li>
-        <li><a href="analytics.html">Analytics</a></li>
-        <li><a href="settings.html">Settings</a></li>
+        <li>
+          <a href="dashboard.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="vehicles.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="12" width="18" height="8" rx="2" ry="2"></rect><path d="M4 12V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"></path><path d="M7 16h1"></path><path d="M16 16h1"></path></svg>
+            <span>Vehicles</span>
+          </a>
+        </li>
+        <li>
+          <a href="drivers.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Drivers</span>
+          </a>
+        </li>
+        <li>
+          <a href="trips.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <span>Trips</span>
+          </a>
+        </li>
+        <li>
+          <a href="maintenance.html" class="active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+            <span>Maintenance</span>
+          </a>
+        </li>
+        <li>
+          <a href="expenses.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg>
+            <span>Fuel & Expenses</span>
+          </a>
+        </li>
+        <li>
+          <a href="analytics.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            <span>Analytics</span>
+          </a>
+        </li>
+        <li>
+          <a href="settings.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Settings</span>
+          </a>
+        </li>
       </ul>
+      
+      <div class="sidebar-footer">
+        <div class="user-avatar">RS</div>
+        <div class="user-info">
+          <div class="user-name">Rahul Sharma</div>
+          <div class="user-role" id="role-display">System Admin</div>
+        </div>
+      </div>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-      <div class="topbar">
-        <h2>Maintenance Log</h2>
-        <div class="d-flex align-items-center">
-          <button id="theme-toggle" class="btn btn-secondary" style="margin-right: 15px;">Toggle Dark Mode</button>
+      
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="page-title">Service & Maintenance</h1>
         </div>
-      </div>
+        
+        <div class="topbar-right">
+          <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="global-search" placeholder="Search records...">
+            <span class="search-shortcut">Ctrl+K</span>
+          </div>
+          
+                    <div class="notification-wrapper" style="position: relative; margin-right: 8px;">
+            <button id="notif-toggle" class="saas-btn saas-btn-icon saas-btn-secondary">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              <span class="notif-badge" style="display:none; position: absolute; top: -2px; right: -2px; width: 10px; height: 10px; background: red; border-radius: 50%;"></span>
+            </button>
+            <div id="notif-dropdown" class="card" style="display: none; position: absolute; top: 100%; right: 0; width: 300px; max-height: 400px; overflow-y: auto; z-index: 1000; margin-top: 8px; padding: 0;">
+              <div style="padding: 12px 16px; border-bottom: 1px solid var(--border-color); font-weight: 500;">Notifications</div>
+              <div id="notif-list" style="padding: 8px 0;"></div>
+            </div>
+          </div>
+          <button id="theme-toggle" class="saas-btn saas-btn-icon saas-btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line></svg>
+          </button>
+        </div>
+      </header>
 
-      <div class="table-container" style="padding: 20px;">
-        <h3 class="mb-3">Log Maintenance Entry</h3>
-        <form id="maintenanceForm" style="max-width: 500px;">
-          <div class="form-group">
-            <label>Vehicle</label>
-            <select id="maint-vehicle-select" class="form-control" required>
-              <option value="">Select Vehicle</option>
-            </select>
+      <!-- Content Canvas -->
+      <div class="content-canvas">
+        <div class="content-max">
+
+          <!-- Action Needed Alerts -->
+          <h2 class="card-title mb-4">Action Needed</h2>
+          <div class="alert-grid" id="action-needed-alerts">
+            <div class="alert-card critical">
+              <div class="alert-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              </div>
+              <div class="alert-content">
+                <h4>Engine Fault Detected</h4>
+                <p>Vehicle <strong>#109</strong> (Tata Signa) reported a critical engine sensor fault during last trip.</p>
+                <button class="saas-btn saas-btn-secondary" style="font-size: 0.8rem; padding: 6px 12px">Schedule Repair</button>
+              </div>
+            </div>
+
+            <div class="alert-card warning">
+              <div class="alert-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              </div>
+              <div class="alert-content">
+                <h4>Overdue Maintenance</h4>
+                <p>Vehicle <strong>#204</strong> (Ashok Leyland) is 500 km past its scheduled 50k oil change.</p>
+                <button class="saas-btn saas-btn-secondary" style="font-size: 0.8rem; padding: 6px 12px">View Details</button>
+              </div>
+            </div>
+
+            <div class="alert-card upcoming">
+              <div class="alert-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </div>
+              <div class="alert-content">
+                <h4>Upcoming Renewals</h4>
+                <p>3 vehicles have registration renewals due within the next 30 days.</p>
+                <button class="saas-btn saas-btn-secondary" style="font-size: 0.8rem; padding: 6px 12px">View List</button>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Issue Description</label>
-            <textarea class="form-control" rows="3" required placeholder="Describe the issue"></textarea>
+          
+          <div class="d-flex justify-between items-center mb-6">
+            <h2 class="card-title">Service History</h2>
+            <div class="d-flex gap-2">
+              <button class="saas-btn saas-btn-secondary">Export Log</button>
+              <button class="saas-btn saas-btn-primary">+ Log Maintenance</button>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Cost</label>
-            <input type="number" class="form-control" placeholder="0.00" required>
+
+          <!-- History Table -->
+          <div class="table-card">
+            <div class="table-responsive">
+              <table class="saas-table" id="maintenance-table">
+                <thead>
+                  <tr>
+                    <th>Service ID</th>
+                    <th>Vehicle</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Cost</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="maintenance-body">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Status</label>
-            <select class="form-control" required>
-              <option value="pending">Pending</option>
-              <option value="in-progress">In Progress</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit Log</button>
-        </form>
+
+        </div>
       </div>
     </main>
   </div>
 
-  <script src="js/mock-data.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const vehicleSelect = document.getElementById('maint-vehicle-select');
-      mockData.vehicles.forEach(v => {
-        const option = document.createElement('option');
-        option.value = v.id;
-        option.textContent = `${v.id} - ${v.regNumber}`;
-        vehicleSelect.appendChild(option);
-      });
+  <!-- Dynamic Maintenance Drawer -->
+  <div id="maintenanceModal" class="drawer-backdrop">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <h2 id="drawerTitle">Log Maintenance</h2>
+        <button class="saas-btn saas-btn-icon saas-btn-secondary" id="closeMaintenanceModal" style="border: none; background: transparent; box-shadow: none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="drawer-body">
+        <form id="maintenanceForm">
+          <input type="hidden" id="mnt-id">
+          
+          <div class="form-group mb-4">
+            <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Vehicle *</label>
+            <select id="mnt-vehicle" class="saas-input" style="width: 100%;">
+              <option value="">Select Vehicle</option>
+            </select>
+            <span class="error-msg text-danger" style="display:none; font-size: 0.75rem; color: #dc3545; margin-top: 4px;">Required</span>
+          </div>
 
-      document.getElementById('maintenanceForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Maintenance log submitted (Mock)');
-        this.reset();
-      });
-    });
-  </script>
+          <div class="d-flex gap-4 mb-4">
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Service Type *</label>
+              <input type="text" id="mnt-type" class="saas-input" style="width: 100%;" placeholder="e.g. Oil Change">
+              <span class="error-msg text-danger" style="display:none; font-size: 0.75rem; color: #dc3545; margin-top: 4px;">Required</span>
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Date *</label>
+              <input type="date" id="mnt-date" class="saas-input" style="width: 100%;">
+              <span class="error-msg text-danger" style="display:none; font-size: 0.75rem; color: #dc3545; margin-top: 4px;">Required</span>
+            </div>
+          </div>
+
+          <div class="d-flex gap-4 mb-4">
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Cost (â‚¹) *</label>
+              <input type="number" id="mnt-cost" class="saas-input" style="width: 100%;" placeholder="0">
+              <span class="error-msg text-danger" style="display:none; font-size: 0.75rem; color: #dc3545; margin-top: 4px;">Required</span>
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label text-muted" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block;">Status</label>
+              <select id="mnt-status" class="saas-input" style="width: 100%;">
+                <option value="Completed">Completed</option>
+                <option value="Scheduled">Scheduled</option>
+                <option value="In Progress">In Progress</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="drawer-footer">
+        <button type="button" id="submitBtn" class="saas-btn saas-btn-primary" style="width: 100%; justify-content: center;">Save Record</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/mock-data.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/rbac.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/maintenance.js"></script>
 </body>
 </html>
+
+
+
+
